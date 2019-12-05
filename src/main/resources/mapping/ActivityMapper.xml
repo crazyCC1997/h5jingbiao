@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dy.h5jingbiao.mapper.ActivityMapper">
+
+
+    <resultMap id="groupListMap" type="com.dy.h5jingbiao.entity.Activity">
+        <id property="activityId" column="activity_id"/>
+        <result property="activityName" column="activity_name"/>
+        <collection property="organizeList" ofType="com.dy.h5jingbiao.entity.Organize">
+            <id property="organizeId" column="organize_id"/>
+            <result property="organizeName" column="organize_name"/>
+        </collection>
+    </resultMap>
+
+    <select id="getActivityDetail" resultMap="groupListMap" parameterType="String">
+            SELECT
+                tba.activity_id,
+                tba.activity_name,
+                tbc.organize_id,
+                tbc.organize_name
+            FROM
+	            activity tba
+            INNER JOIN rel_activity_organize tbb ON tba.activity_id = tbb.a_id
+            INNER JOIN organize tbc ON tbb.o_id = tbc.organize_id
+            WHERE
+              tba.activity_id = #{activityId}
+    </select>
+
+</mapper>

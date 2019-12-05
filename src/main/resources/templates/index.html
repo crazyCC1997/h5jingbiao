@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>扬州中行勇攀高峰竞标活动</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">“勇攀高峰”活动后台管理页</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item"><a href="#">竞标活动信息</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <h1 align="center" style="">扬州中行永攀高峰竞标活动</h1>
+            <hr class="layui-bg-green">
+
+            <button type="button" class="layui-btn">
+                <a href="/activity/toAdd" class="layui-btn">添加竞标活动</a>
+            </button>
+            <form class="layui-form" action="#">
+                <div class="layui-form-item">
+                    <table class="layui-table">
+                        <colgroup>
+                            <col width="150">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>活动编号</th>
+                            <th>竞标名称</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <%
+                            for(list in activityList){
+                        %>
+                        <tr>
+                           <td>${list.activityId}</td>
+                           <td>${list.activityName}</td>
+                           <td>
+                               <button type="button" class="layui-btn">
+                                   <a href="/activity/toPublish?activityId=${list.activityId}" class="layui-btn">发布</a>
+                               </button>
+                               <button type="button" class="layui-btn">
+                                   <a href="/activity/toUpdate?activityId=${list.activityId}" class="layui-btn">修改</a>
+                               </button>
+                               <button type="button" class="layui-btn">
+                                   <a href="/activity/delete?activityId=${list.activityId}" class="layui-btn">删除</a>
+                               </button>
+                               <button type="button" class="layui-btn">开始</button>
+                               <button type="button" class="layui-btn">暂停</button>
+                               <button type="button" class="layui-btn">结束</button>
+                           </td>
+                        </tr>
+                        <%}%>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        底部固定区域
+    </div>
+</div>
+<script src="/layui/layui.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>

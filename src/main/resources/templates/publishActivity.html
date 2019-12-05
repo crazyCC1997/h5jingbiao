@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>活动信息发布页面</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">“勇攀高峰”活动后台管理页</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item"><a href="#">竞标活动信息</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <h1 align="center" style="">活动信息发布页面</h1>
+        <hr class="layui-bg-green">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <input type="hidden" name="activityId" value="${activity.activityId}">
+                <label class="layui-form-label">竞标名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="activityName" autocomplete="off" class="layui-input" value="${activity.activityName}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">竞标单位</label>
+                <div class="layui-input-block" id="checkbox-org">
+                    <%for(var tempOrg in orgs){
+                    var checkedFlag = "";
+                    for(var org in activity.organizeList){
+                    if( org.organizeId == tempOrg.organizeId ){
+                    checkedFlag = "checked";
+                        }
+                    }
+                    %>
+                    <input type="checkbox" name="tempOrg" title="${tempOrg.organizeName}" ${checkedFlag}>
+                    <%}%>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">活动地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即发布</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        底部固定区域
+    </div>
+</div>
+<script src="/layui/layui.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+    layui.use('form', function(){
+        var form = layui.form;
+
+    });
+</script>
+</body>
+</html>
